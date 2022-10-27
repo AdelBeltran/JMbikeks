@@ -1,0 +1,257 @@
+[options]
+#para configurar los reportes agregar estas lineas a parametros de compañia
+#web.base.url.freeze    True
+#report.url =   http://0.0.0.0:$PORT
+
+
+; ===============================
+; | Web interface Configuration |
+; ===============================
+; ------
+; --db-filter | Se puede usar marcadores de posición %d (dominio) y %h (host).
+; ------
+;dbfilter = ^%d$
+
+; ===================
+; | Common options)
+; ===================
+
+; ------
+; -- admin_passwd | Contraseña de la instancia de odoo
+admin_passwd = $PASS_DB_MANAGER
+
+; ------
+; -c / --config | especificar un archivo de configuración alternativo
+; ------
+; config = 
+
+; ------
+; -s / --save | guarde la configuración en ~/.odoorc (odoo.conf)
+; ------
+; save = 
+
+; ------
+; -i / --init | instalar uno o más módulos (lista separada por comas, use "todos" para todos los módulos), requiere -d
+; ------
+; init = 
+
+; ------
+; -u / --update | actualizar uno o más módulos (lista separada por comas, use "todos" para todos los módulos). Requiere -d.
+; ------
+; update = 
+
+; ------
+; --without-demo | deshabilite la carga de datos de demostración para los módulos que se instalarán (separados por comas, use "todos" para todos los módulos). Requiere -d y -i. El valor predeterminado es % predeterminado
+; ------
+; without_demo = 
+
+; ------
+; -P / --import-partial | Use esto para la importación de grandes datos, si falla, podrá continuar en el estado actual. Proporcione un nombre de archivo para almacenar estados de importación intermedios.
+; ------
+
+
+
+; import_partial = 
+
+; ------
+; --pidfile | archivo donde se almacenará el pid del servidor
+; ------
+; pidfile = 
+
+; ------
+; --addons-path | tipo = carpeta definida por la ubicación completa donde se colocan el número de módulos de odoo (separados por comas).
+; ------
+
+addons_path =
+    $PATHREPOS,
+    $PATHBASE/$VERSION/odoo/odoo/addons,
+    $PATHREPOS_dev,
+    $PATHREPOS_location,
+    $PATHREPOS_store,
+    $PATHREPOS_themes,
+    $PATHBASE/$VERSION/$PATHREPOS_enterprise
+; ------
+; --upgrade-path | especifica una ruta de actualización adicional.
+; ------
+; upgrade_path = 
+
+; ------
+; --load | Lista separada por comas de módulos de todo el servidor.
+; ------
+; server_wide_modules = base,web
+
+; ------
+; -D / --data-dir | Directorio donde almacenar datos de Odoo
+; ------
+data_dir = $PATHBASE_DATA/data$PROJECT_NAME
+
+
+; ==============================
+; | HTTP Service Configuration |
+; ==============================
+; ------
+; --http-interface | Escucha la dirección de la interfaz para los servicios HTTP. Manténgalo vacío para escuchar en todas las interfaces (0.0.0.0)
+; ------
+; http_interface = 
+
+; ------
+; -p / --http-port | Puerto de escucha para el servicio HTTP principal
+; ------
+http_port = $PORT
+
+; ------
+; --longpolling-port | Puerto de escucha para el servicio HTTP de sondeo largo
+; ------
+longpolling_port = 8072
+
+; ------
+; --http_enable | Deshabilite los servicios HTTP y Longpolling por completo
+; ------
+http_enable = True
+
+; ------
+; --proxy-mode | ¡Habilite esto solo cuando se ejecute detrás de un proxy web confiable!
+; ------
+proxy_mode = True
+
+; ===============================
+; | Configuración XML-RPC |
+; ===============================
+xmlrpc_interface = 0.0.0.0
+xmlrpc_port = $PORT
+; ------
+; --xmlrpc-interface | Interfaz, dirección IP o URL.
+; ------
+; http_interface = 
+
+; ------
+; --xmlrpc-port | Puerto de conexión.
+; ------
+; http_port = 
+
+; ------
+; --no-xmlrpc | Por defecto está habilitado, se puede deshabilitar con True.
+; ------
+; no_xmlrpc = 
+
+; =========================
+; | Logging Configuration |
+; =========================
+; ------
+; --logfile | archivo donde se almacenará el registro del servidor
+; ------
+logfile = $PATH_LOG/odoo$VCODE-server.log
+
+; ------
+; --logrotate | Si es Verdadero, crea un archivo de registro diario y se conserva por 30 días.
+; ------
+logrotate = True
+
+; ============================
+; | Database related options |
+; ============================
+
+; ------
+; --db_maxconn | especificar el número máximo de conexiones físicas a PostgreSQL
+; ------
+db_maxconn = 64
+
+; ------
+; --db-template | especificar una plantilla de base de datos personalizada para crear una nueva base de datos
+; ------
+db_template = template0
+
+; ============================
+; | Security-related options |
+; ============================
+; ------
+; --list_db | Deshabilite la capacidad de obtener o ver la lista de bases de datos. También deshabilite el acceso al administrador y al selector de la base de datos, así que asegúrese de establecer primero un parámetro --database adecuado
+; ------
+list_db = True
+
+; ====================
+; | Advanced options |
+; ====================
+; ------
+; --dev | Habilitar el modo de desarrollador. Param: Lista de opciones separadas por coma. Opciones: todo, [pudb|wdb|ipdb|pdb], recargar, qweb, werkzeug, xml
+; ------
+; dev_mode = reload
+
+; ------
+; --shell-interface | Especifique un REPL preferido para usar en modo shell. Los REPL admitidos son: [ipython|ptpython|bpython|python]
+; ------
+; shell_interface = 
+
+; ------
+; --stop-after-init | detener el servidor después de su inicialización
+; ------
+; stop_after_init = 
+
+; ------
+; --osv-memory-count-limit | Forzar un límite en el número máximo de registros guardados en las tablas virtuales osv_memory. El valor predeterminado es Falso, lo que significa que no hay límite basado en el conteo.
+; ------
+; osv_memory_count_limit = 
+
+; ------
+; --transient-age-limit | Los registros de límite de tiempo (valor decimal en horas) creados con un TransientModel (principalmente asistente) se mantienen en la base de datos. Por defecto a 1 hora.
+; ------
+; transient_age_limit = 1.0
+
+; ------
+; --osv-memory-age-limit | Alias ​​en desuso para la opción de límite de edad transitoria
+; ------
+; osv_memory_age_limit = 
+
+; ------
+; --max-cron-threads | Número máximo de subprocesos que procesan simultáneamente trabajos cron (predeterminado 2).
+; ------
+max_cron_threads = 2
+
+; ------
+; --unaccent | habilite la extensión sin acento al crear nuevas bases de datos.
+; ------
+; unaccent = False
+
+; ------
+; --geoip-db | Ruta absoluta al archivo de la base de datos GeoIP.
+; ------
+; geoip_database = /usr/share/GeoIP/GeoLite2-City.mmdb
+
+; ===========================
+; | Multiprocessing options |
+; ===========================
+; ------
+; --workers | Especifique el número de trabajadores, 0 desactive el modo prefork.
+; ------
+workers = 2
+
+; ------
+; --limit-memory-soft | Memoria virtual máxima permitida por trabajador (en bytes), cuando se alcanza, el trabajador se restablece después de la solicitud actual (predeterminado 2048MiB).
+; ------
+limit_memory_soft = 665516768
+
+; ------
+; --limit-memory-hard | Máximo de memoria virtual permitida por trabajador (en bytes), cuando se alcance, cualquier asignación de memoria fallará (predeterminado 2560MiB).
+; ------
+limit_memory_hard = 831895961
+
+
+; ------
+; --limit-time-cpu | Tiempo de CPU máximo permitido por solicitud (predeterminado 60).
+; ------
+limit_time_cpu = 1000
+
+; ------
+; --limit-time-real | Tiempo real máximo permitido por solicitud (predeterminado 120).
+; ------
+limit_time_real = 1000
+
+; ------
+; --limit-time-real-cron | Tiempo real máximo permitido por trabajo cron. (predeterminado: --limit-time-real). Establézcalo en 0 para no tener límite.
+; ------
+limit_time_real_cron = 0
+
+; ------
+; --limit-request | Número máximo de solicitudes a procesar por trabajador (predeterminado 8192).
+; ------
+limit_request = 8192
